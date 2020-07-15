@@ -9,15 +9,15 @@ public class WebLogsService {
     @Autowired
     private WebSocket webSocket;
 
-    public void output(){
-        webSocket.sendMessage("loading.....");
+    public void output(String id){
+        webSocket.sendMessage("loading.....",id);
         try {
             Thread.sleep(1000);
-            webSocket.sendMessage("正在导入人员。。。。");
+            webSocket.sendMessage("正在导入人员。。。。",id);
             Thread.sleep(1000);
-            webSocket.sendMessage("导入人员成功");
+            webSocket.sendMessage("导入人员成功",id);
             Thread.sleep(1000);
-            webSocket.sendMessage("正在导入项目。。。。");
+            webSocket.sendMessage("正在导入项目。。。。",id);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@
 <body>
 <br>
 
+<button id="output">按钮</button>
 <label>日志展示：</label>
 
 <div class="conWrap">
@@ -26,12 +27,19 @@
 </div>
 
 <script>
+    function guid2() {
+        function S4() {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
 
+        return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+    }
+    var id = guid2();
     var websocket=null;
 
     if('WebSocket' in window){
 
-        websocket=new WebSocket('ws://localhost:8080/webSocket');
+        websocket=new WebSocket('ws://localhost:8080/webSocket/'+id);
 
     }else{
 
@@ -78,6 +86,12 @@
         websocket.close();
 
     }
+
+    $("#output").click(function () {
+        $.get("http://localhost:8080/output/"+id,function () {
+
+        });
+    })
 
 </script>
 
